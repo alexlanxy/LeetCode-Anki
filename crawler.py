@@ -29,7 +29,6 @@ class LeetCodeCrawler:
         chrome_options.add_argument("--disable-blink-features=AutomationControlled")
         self.browser = uc.Chrome(options=chrome_options, headless=False)  # Change to True for headless mode
 
-        print("✅ Using Chrome version:", self.browser.capabilities["browserVersion"])
 
         self.session.headers.update(
             {
@@ -114,12 +113,10 @@ class LeetCodeCrawler:
                 return
 
             # Debugging: Print a snippet of the response
-            print("✅ Request successful, parsing response...")
+            print("✅ Request successful")
 
             all_problems = json.loads(response.content.decode('utf-8'))
 
-            # Debugging: Print structure of received JSON
-            print(json.dumps(all_problems, indent=2)[:1000])  # Print only first 1000 characters
 
             counter = 0
             for item in all_problems.get('stat_status_pairs', []):
